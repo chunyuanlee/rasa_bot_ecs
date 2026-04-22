@@ -1,0 +1,17 @@
+# 虚拟环境
+venv/
+.env/
+.env.local
+.env
+# 编译文件
+__pycache__/
+*.pyc
+*.pyo
+.idea/
+# 日志文件
+*.log
+
+.rasa
+./models/bge-base-zh-v1.5/
+e2e_coverage_results
+models

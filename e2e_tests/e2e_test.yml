@@ -1,0 +1,110 @@
+test_cases:
+  - test_case: 3XWvdMuW7IzK8ge6AAAH
+    steps:
+      - user: "你好"
+      - utter: utter_cannot_handle
+      - user: "查询支持的快递"
+      - bot: "支持的快递有：\n- 中通\n- 圆通\n- 申通\n- 邮政\n- 韵达\n- 顺丰"
+      - utter: utter_can_do_something_else
+      - user: "查询物流信息"
+      - bot: "请选择订单"
+      - user: "/SetSlots(order_id=ord7ad2d734344f4b73)"
+      - bot: "- **订单ID**：ord7ad2d734344f4b73\n  - 平板电脑 × 3\n  - 机械键盘 × 1\n- **物流ID**：lgtbfb8e2efb26b476f\n- **物流信息**：\n  - 2025-11-17 10:03:08 江苏省淮安市金湖县 已揽收\n  - 2025-11-17 10:27:03 离开 江苏省淮安市金湖县，发往 湖南省株洲市\n  - 2025-11-17 16:25:08 到达 湖南省株洲市\n  - 2025-11-17 16:38:30 离开 湖南省株洲市，发往 黑龙江省伊春市"
+      - utter: utter_can_do_something_else
+
+  - test_case: QWxyJpr5EO7oxawSAAAJ
+    steps:
+      - user: "你好"
+      - utter: utter_cannot_handle
+      - user: "查询物流信息"
+      - bot: "请选择订单"
+      - user: "/SetSlots(order_id=ord7ad2d734344f4b73)"
+      - bot: "- **订单ID**：ord7ad2d734344f4b73\n  - 平板电脑 × 3\n  - 机械键盘 × 1\n- **物流ID**：lgtbfb8e2efb26b476f\n- **物流信息**：\n  - 2025-11-17 10:03:08 江苏省淮安市金湖县 已揽收\n  - 2025-11-17 10:27:03 离开 江苏省淮安市金湖县，发往 湖南省株洲市\n  - 2025-11-17 16:25:08 到达 湖南省株洲市\n  - 2025-11-17 16:38:30 离开 湖南省株洲市，发往 黑龙江省伊春市"
+      - utter: utter_can_do_something_else
+      - user: "物流投诉"
+      - bot: "请选择订单"
+      - user: "/SetSlots(order_id=ord7ad2d734344f4b73)"
+      - bot: "- **订单ID**：ord7ad2d734344f4b73\n  - 平板电脑 × 3\n  - 机械键盘 × 1\n- **物流ID**：lgtbfb8e2efb26b476f\n- **物流信息**：\n  - 2025-11-17 10:03:08 江苏省淮安市金湖县 已揽收\n  - 2025-11-17 10:27:03 离开 江苏省淮安市金湖县，发往 湖南省株洲市\n  - 2025-11-17 16:25:08 到达 湖南省株洲市\n  - 2025-11-17 16:38:30 离开 湖南省株洲市，发往 黑龙江省伊春市"
+      - bot: "请选择反馈的问题："
+      - user: "/SetSlots(logistics_complaint=长时间未更新物流信息)"
+      - bot: "您的投诉已经收到，我们会尽快处理。"
+      - utter: utter_can_do_something_else
+
+  - test_case: rt6LHKivyA82ilR2AAAL
+    steps:
+      - user: "你好"
+      - utter: utter_cannot_handle
+      - user: "查询订单详情"
+      - bot: "请选择订单"
+      - user: "/SetSlots(order_id=ordca903816d74d4cd7)"
+      - bot: "- [待发货]**订单ID**：ordca903816d74d4cd7\n  - 创建时间：2025-11-20 19:55:43\n  - 支付时间：2025-11-20 20:01:10\n- **订单明细**：\n  - 男士休闲鞋 × 3 |                 567.00-262.99=304.01\n  - 游戏鼠标 × 1 |                 129.00-50.32=78.68\n  - **合计**：696.0-313.31=382.69\n- **收货信息**：\n  - 收货人：彭莹\n  - 联系电话：15547643569\n  - 收货地址：湖南省                株洲市                天元区                沈阳路P座"
+      - utter: utter_can_do_something_else
+
+  - test_case: d5UKEyXuuxjzitoDAAAN
+    steps:
+      - user: "你好"
+      - utter: utter_cannot_handle
+      - user: "查询订单"
+      - bot: "请选择订单"
+      - user: "/SetSlots(order_id=ordca903816d74d4cd7)"
+      - bot: "- [待发货]**订单ID**：ordca903816d74d4cd7\n  - 创建时间：2025-11-20 19:55:43\n  - 支付时间：2025-11-20 20:01:10\n- **订单明细**：\n  - 男士休闲鞋 × 3 |                 567.00-262.99=304.01\n  - 游戏鼠标 × 1 |                 129.00-50.32=78.68\n  - **合计**：696.0-313.31=382.69\n- **收货信息**：\n  - 收货人：彭莹\n  - 联系电话：15547643569\n  - 收货地址：湖南省                株洲市                天元区                沈阳路P座"
+      - utter: utter_can_do_something_else
+      - user: "修改收货信息"
+      - bot: "请选择订单"
+      - user: "/SetSlots(order_id=ordca903816d74d4cd7)"
+      - bot: "- [待发货]**订单ID**：ordca903816d74d4cd7\n  - 创建时间：2025-11-20 19:55:43\n  - 支付时间：2025-11-20 20:01:10\n- **订单明细**：\n  - 男士休闲鞋 × 3 |                 567.00-262.99=304.01\n  - 游戏鼠标 × 1 |                 129.00-50.32=78.68\n  - **合计**：696.0-313.31=382.69\n- **收货信息**：\n  - 收货人：彭莹\n  - 联系电话：15547643569\n  - 收货地址：湖南省                株洲市                天元区                沈阳路P座"
+      - bot: "请选择现有的收货信息，或修改并新建收货信息"
+      - user: "/SetSlots(receive_id=rec8edcf20be3094661)"
+      - bot: "- 收货人姓名：娄秀芳\n- 联系电话：15928224620\n- 收货省份：吉林省\n- 收货城市：松原市\n- 收货城区：宁江区\n- 收货地址：六盘水路i座"
+      - bot: "是否确认修改？"
+      - user: "/SetSlots(set_receive_info=true)"
+      - bot: "订单收货信息已修改"
+      - utter: utter_can_do_something_else
+
+  - test_case: L_BdYql356kSBQVxAAAR
+    steps:
+      - user: "你好"
+      - utter: utter_cannot_handle
+      - user: "取消订单"
+      - bot: "请选择订单"
+      - user: "/SetSlots(order_id=ord5e85aecb358a4bd4)"
+      - bot: "- [待发货]**订单ID**：ord5e85aecb358a4bd4\n  - 创建时间：2025-11-13 14:16:10\n  - 支付时间：2025-11-13 14:19:41\n- **订单明细**：\n  - 进口巧克力礼盒 × 1 |                 98.00-89.94=8.06\n  - **合计**：98.0-89.94=8.06\n- **收货信息**：\n  - 收货人：丽丽iiiiii\n  - 联系电话：08080808080\n  - 收货地址：辽宁省                辽阳市                宏伟区                大路上"
+      - utter: utter_ask_if_cancel_order
+      - user: "/SetSlots(if_cancel_order=true)"
+      - bot: "订单已取消，退款金额将在24小时内返还您的账户"
+      - utter: utter_can_do_something_else
+
+  - test_case: eJdH8W-AbkQrqOXzAAAT
+    steps:
+      - user: "你好"
+      - utter: utter_cannot_handle
+      - user: "申请售后"
+      - bot: "请选择订单"
+      - user: "/SetSlots(order_id=orde0df5ed976284d18)"
+      - bot: "- [已签收]**订单ID**：orde0df5ed976284d18\n  - 创建时间：2025-11-24 05:12:58\n  - 支付时间：2025-11-24 05:26:57\n  - 签收时间：2025-11-24 22:47:11\n- **订单明细**：\n  - 护手霜 × 1 |                 25.00-23.09=1.91\n  - **合计**：25.0-23.09=1.91\n- **收货信息**：\n  - 收货人：娄秀芳\n  - 联系电话：15928224620\n  - 收货地址：吉林省                松原市                宁江区                六盘水路i座\n- **最近物流信息**：\n  - 2025-11-24 22:47:11 吉林省松原市宁江区六盘水路i座 已签收"
+      - bot: "请选择要申请售后的订单明细"
+      - user: "/SetSlots(order_detail_ids=ordd041de052be534375)"
+      - bot: "- ordd041de052be534375                    \n- 护手霜 × 1                    \n- 25.00-23.09=1.91                    \n  请选择售后类型"
+      - user: "/SetSlots(postsale_type=换货)"
+      - bot: "- ordd041de052be534375                    \n- 护手霜 × 1                    \n- 25.00-23.09=1.91                    \n  请选择售后原因"
+      - user: "/SetSlots(postsale_reason=过敏反应)"
+      - bot: "您的换货申请已提交，审核结果将在48小时内通知您"
+      - utter: utter_can_do_something_else
+
+  - test_case: fwGVA467o1B5sCHNAAAV
+    steps:
+      - user: "你好"
+      - utter: utter_cannot_handle
+      - user: "售后"
+      - bot: "请选择订单"
+      - user: "/SetSlots(order_id=ord7435722be7ac4f37)"
+      - bot: "- [已完成]**订单ID**：ord7435722be7ac4f37\n  - 创建时间：2025-11-18 15:05:08\n  - 支付时间：2025-11-18 15:09:22\n  - 签收时间：2025-11-19 18:46:55\n  - 完成时间：2025-11-20 12:42:46\n- **订单明细**：\n  - 婴儿安全座椅 × 1 |                 699.00-149.03=549.97\n  - **合计**：699.0-149.03=549.97\n- **收货信息**：\n  - 收货人：娄秀芳\n  - 联系电话：15928224620\n  - 收货地址：吉林省                松原市                宁江区                六盘水路i座\n- **最近物流信息**：\n  - 2025-11-19 18:46:54 吉林省松原市宁江区六盘水路i座 已签收"
+      - bot: "- [审核中]**售后ID**：pts10673df7b13946d0\n- **订单明细**：\n  -婴儿安全座椅 × 1\n- **退款金额**：549.97"
+      - bot: "请选择要申请售后的订单明细"
+      - user: "/SetSlots(order_detail_ids=ordd46b056ab57634437)"
+      - bot: "- ordd46b056ab57634437                    \n- 婴儿安全座椅 × 1                    \n- 699.00-149.03=549.97                    \n  请选择售后类型"
+      - user: "/SetSlots(postsale_type=退货)"
+      - bot: "- ordd46b056ab57634437                    \n- 婴儿安全座椅 × 1                    \n- 699.00-149.03=549.97                    \n  请选择售后原因"
+      - user: "/SetSlots(postsale_reason=重复下单/误拍)"
+      - bot: "您的退货申请已提交，审核结果将在48小时内通知您"
+      - utter: utter_can_do_something_else

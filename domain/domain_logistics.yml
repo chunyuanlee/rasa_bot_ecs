@@ -1,0 +1,32 @@
+version: '3.1'
+
+slots:
+  # 查询物流
+  logistics_id: # 物流id
+    type: text
+    mappings:
+      - type: custom
+
+  logistics_complaint:
+    type: text
+    mappings:
+      - type: controlled  # 手动查库，然后写进槽
+
+  logistics_complaint_other:
+    type: text
+    mappings:
+      - type: from_llm  # 用大模型从用户的输入提取信息填槽
+
+responses:
+  utter_ask_logistics_complaint_other:
+    - text: "请详细描述{logistics_id}遇到的问题"
+
+actions:
+  # 查询快递公司名字
+  - action_get_logistics_companys
+  # 获取快递详细信息
+  - action_get_logistics_info
+  # 询问投诉原因列表，返回button给用户选择
+  - action_ask_logistics_complaint
+  # 把物流投诉信息，入库
+  - action_record_logistics_complaint

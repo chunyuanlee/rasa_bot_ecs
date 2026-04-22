@@ -1,0 +1,16 @@
+parameters:
+  num_rephrases: 10
+  rephrase_config:
+    prompt_template: default_rephrase_prompt_template.jina2
+    llm:
+      provider: self-hosted
+      model: qwen-plus
+      api_base: https://dashscope.aliyuncs.com/compatible-mode/v1
+      api_key: '${API_KEY}'
+  model: models
+  endpoints: endpoints.yml
+  sub-agents: sub_agents
+  remote-storage: null
+  train_frac: 0.8
+  output_format: instruction
+  out: output

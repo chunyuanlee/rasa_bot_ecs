@@ -1,0 +1,22 @@
+fixtures: []
+metadata: []
+stub_custom_actions: {}
+test_cases:
+- test_case: QWxyJpr5EO7oxawSAAAJ
+  steps:
+  - user: "你好"
+  - utter: utter_cannot_handle
+  - user: "查询物流信息"
+  - bot: "请选择订单"
+  - user: "/SetSlots(order_id=ord7ad2d734344f4b73)"
+  - bot: "- **订单ID**：ord7ad2d734344f4b73\n  - 平板电脑 × 3\n  - 机械键盘 × 1\n- **物流ID**：lgtbfb8e2efb26b476f\n- **物流信息**：\n  - 2025-11-17 10:03:08 江苏省淮安市金湖县 已揽收\n  - 2025-11-17 10:27:03 离开 江苏省淮安市金湖县，发往 湖南省株洲市\n  - 2025-11-17 16:25:08 到达 湖南省株洲市\n  - 2025-11-17 16:38:30 离开 湖南省株洲市，发往 黑龙江省伊春市"
+  - utter: utter_can_do_something_else
+  - user: "物流投诉"
+  - bot: "请选择订单"
+  - user: "/SetSlots(order_id=ord7ad2d734344f4b73)"
+  - bot: "- **订单ID**：ord7ad2d734344f4b73\n  - 平板电脑 × 3\n  - 机械键盘 × 1\n- **物流ID**：lgtbfb8e2efb26b476f\n- **物流信息**：\n  - 2025-11-17 10:03:08 江苏省淮安市金湖县 已揽收\n  - 2025-11-17 10:27:03 离开 江苏省淮安市金湖县，发往 湖南省株洲市\n  - 2025-11-17 16:25:08 到达 湖南省株洲市\n  - 2025-11-17 16:38:30 离开 湖南省株洲市，发往 黑龙江省伊春市"
+  - bot: "请选择反馈的问题："
+  - user: "/SetSlots(logistics_complaint=长时间未更新物流信息)"
+  - bot: "您的投诉已经收到，我们会尽快处理。"
+  - utter: utter_can_do_something_else
+

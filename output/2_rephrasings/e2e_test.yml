@@ -1,0 +1,46 @@
+conversations:
+- original_test_case: e2e_tests/e2e_test.yml::QWxyJpr5EO7oxawSAAAJ
+  steps:
+  - user: 你好
+  - utter: utter_cannot_handle
+  - user: 查询物流信息
+    llm_commands:
+    - start flow query_shipping_order_logistics
+    passing_rephrasings:
+    - 我想查一下物流状态。
+    - 能帮我看看这个订单的配送进度吗？
+    - 请查询该订单的物流详情。
+    - 查下这个包裹现在到哪了。
+    - 想了解下发货情况，可以帮忙查一下吗？
+    - 请问能不能查看当前的运输信息？
+    - 帮我追踪一下快递进展吧。
+    - 这个订单的物流信息能查吗？
+    - 麻烦提供一下最新的物流动态。
+    failing_rephrasings:
+    - 看看货发出来没有，查查物流。
+  - bot: 请选择订单
+  - user: /SetSlots(order_id=ord7ad2d734344f4b73)
+  - bot: "- **订单ID**：ord7ad2d734344f4b73\n  - 平板电脑 × 3\n  - 机械键盘 × 1\n- **物流ID**：lgtbfb8e2efb26b476f\n- **物流信息**：\n  - 2025-11-17 10:03:08 江苏省淮安市金湖县 已揽收\n  - 2025-11-17 10:27:03 离开 江苏省淮安市金湖县，发往 湖南省株洲市\n  - 2025-11-17 16:25:08 到达 湖南省株洲市\n  - 2025-11-17 16:38:30 离开 湖南省株洲市，发往 黑龙江省伊春市"
+  - utter: utter_can_do_something_else
+  - user: 物流投诉
+    llm_commands:
+    - start flow complaint_logistics
+    passing_rephrasings:
+    - 我要投诉物流问题。
+    - 对物流服务不满意，需要投诉。
+    - 想反映一下快递方面的困扰。
+    - 请帮我登记一个物流相关的投诉。
+    failing_rephrasings:
+    - 物流出了点问题，我要提交投诉。
+    - 快递太慢了，我要投诉长时间没更新。
+    - 关于配送服务有问题，希望反馈一下。
+    - 麻烦处理一下我对物流的不满。
+    - 运输过程有问题，我想发起投诉。
+    - 提交一个关于物流信息停滞的投诉请求。
+  - bot: 请选择订单
+  - user: /SetSlots(order_id=ord7ad2d734344f4b73)
+  - bot: "- **订单ID**：ord7ad2d734344f4b73\n  - 平板电脑 × 3\n  - 机械键盘 × 1\n- **物流ID**：lgtbfb8e2efb26b476f\n- **物流信息**：\n  - 2025-11-17 10:03:08 江苏省淮安市金湖县 已揽收\n  - 2025-11-17 10:27:03 离开 江苏省淮安市金湖县，发往 湖南省株洲市\n  - 2025-11-17 16:25:08 到达 湖南省株洲市\n  - 2025-11-17 16:38:30 离开 湖南省株洲市，发往 黑龙江省伊春市"
+  - bot: 请选择反馈的问题：
+  - user: /SetSlots(logistics_complaint=长时间未更新物流信息)
+  - bot: 您的投诉已经收到，我们会尽快处理。
+  - utter: utter_can_do_something_else

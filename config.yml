@@ -1,0 +1,20 @@
+recipe: default.v1
+language: zh
+assistant_id: atguigu_ecs
+
+pipeline:
+  - name: SearchReadyLLMCommandGenerator  # 使用rag的话，此处必须从CompactLLMCommandGenerator替换为SearchReadyLLMCommandGenerator
+    llm:
+      model_group: qwen
+    flow_retrieval:
+      active: false # 此处关闭flow检索功能，prompt会把所有的flows都加上，会消耗大量token，flow数量超过40个时，建议设为True
+
+policies:
+  - name: FlowPolicy
+  - name: EnterpriseSearchPolicy  # 策略这里新增一个企业级的搜索策略
+    llm:
+      model_group: qwen
+    embeddings:
+      model_group: embedding_models
+    vector_store:
+      type: "addons.information_retrieval.GraphRAG"  # 新增此处指定到自定义脚本里的一个操作图数据库的类

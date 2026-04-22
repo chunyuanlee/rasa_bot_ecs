@@ -1,0 +1,44 @@
+flows:
+  postsale:
+    name: 售后处理，包括退款、退货、换货
+    description: 售后处理，包括退款、退货、换货
+    steps:
+      - set_slots: # 查询已签收、售后中、已完成的订单
+          - goto: action_ask_order_id_after_delivered
+      - collect: order_id
+        next:
+          - if: slots.order_id != "false"
+            then: get_order_detail
+          - else: END
+      - id: get_order_detail # 查询此订单的详情
+        action: action_get_order_detail
+      - collect: order_detail_ids # 选择退换货商品
+        next:
+          - if: slots.order_detail_ids != "false"
+            then: select_postsale_type
+          - else: END
+      - id: select_postsale_type # 选择售后类型
+        collect: postsale_type
+        ask_before_filling: true
+        next:
+          - if: slots.postsale_type != "false"
+            then: select_postsale_reason
+          - else: END
+      - id: select_postsale_reason # 选择售后原因
+        collect: postsale_reason
+        ask_before_filling: true
+        next:
+          - if: slots.postsale_reason == "其他"
+            then:
+              - collect: other_postsale_reason # 询问其他售后原因
+                ask_before_filling: true
+                next: commit_postsale
+          - if: slots.postsale_reason != "false"
+            then: commit_postsale
+          - else: END
+      - id: commit_postsale # 提交售后申请
+        action: action_commit_postsale
+        next:
+          - if: slots.order_detail_ids
+            then: select_postsale_type
+          - else: END

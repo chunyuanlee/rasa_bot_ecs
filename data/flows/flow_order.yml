@@ -1,0 +1,117 @@
+flows:
+  # 测试用功能
+  switch_user_id:
+    name: 切换用户
+    description: 切换用户
+    persisted_slots: # 持久化槽,流程结束后不重置槽
+      - user_id
+    steps:
+      - collect: user_id
+        description: 用户ID
+
+  query_order_detail:
+    name: 查询订单详情
+    description: 查询订单详情
+    steps:
+      - set_slots: # 查询进行中，或3日内已完成的订单
+          - goto: action_ask_order_id_before_completed_3_days
+      - collect: order_id
+        next:
+          - if: slots.order_id != "false"
+            then:
+              - action: action_get_order_detail # 查询此订单的详情
+                next: END
+          - else: END
+
+  modify_order_receive_info:
+    name: 修改订单收货信息
+    description: 修改订单收货信息
+    steps:
+      - set_slots: # 查询已签收之前状态的订单
+          - goto: action_ask_order_id_before_delivered
+      - collect: order_id
+        next:
+          - if: slots.order_id != "false"
+            then: get_order_detail
+          - else: END
+      - id: get_order_detail # 查询此订单的详情
+        action: action_get_order_detail
+      - collect: receive_id # 重新选择现有的收货信息，或修改并新建收货信息
+        next:
+          - if: slots.receive_id == "false"
+            then: END
+          - if: slots.receive_id == "modify"
+            then: select_modify_content
+          - else: confirm_receive_info
+      - id: select_modify_content # 选择修改订单收货信息的内容
+        collect: modify_content
+        ask_before_filling: true # 清空槽位重新填充,强制让用户填写内容，防止打断
+        next:
+          - if: slots.modify_content == "收货人姓名"
+            then:
+              - collect: receiver_name
+                description: 姓名
+                ask_before_filling: true
+                next: if_modify_continue
+          - if: slots.modify_content == "收货人电话"
+            then:
+              - collect: receiver_phone
+                description: 手机号码
+                ask_before_filling: true
+                next: if_modify_continue
+          - if: slots.modify_content == "收货地址"
+            then:
+              - collect: receive_province
+                ask_before_filling: true
+              - collect: receive_city
+                ask_before_filling: true
+              - collect: receive_district
+                ask_before_filling: true
+              - collect: receive_street_address
+                description: 街道地址
+                ask_before_filling: true
+                next: if_modify_continue
+          # 如果之前已经修改过内容，但是再次修改其他内容时选择了取消
+          - if: slots.receive_id == "modified"
+            then: confirm_receive_info
+          - else: END
+      - id: if_modify_continue # 询问是否继续修改
+        collect: if_modify_continue
+        ask_before_filling: true
+        next:
+          - if: slots.if_modify_continue
+            then:
+              - set_slots:
+                  - receive_id: modified
+                next: select_modify_content
+          - else: confirm_receive_info
+      - id: confirm_receive_info # 确认修改订单收货信息
+        collect: set_receive_info
+        ask_before_filling: true
+        next:
+          - if: slots.set_receive_info
+            then:
+              - action: action_ask_set_receive_info
+                next: END
+          - else: END
+
+  cancel_order:
+    name: 取消订单
+    description: 取消订单
+    steps:
+      - set_slots: # 查询待支付或待发货的订单
+          - goto: action_ask_order_id_before_shipped
+      - collect: order_id
+        next:
+          - if: slots.order_id != "false"
+            then: get_order_detail
+          - else: END
+      - id: get_order_detail # 查询此订单的详情
+        action: action_get_order_detail
+      - collect: if_cancel_order # 询问是否取消订单
+        next:
+          - if: slots.if_cancel_order
+            then:
+              - action: action_cancel_order
+                next: END
+          - else: END
